@@ -1,0 +1,211 @@
+{
+  "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+  "name": "lest",
+  "patterns": [
+    {
+      "include": "#comments"
+    },
+    {
+      "include": "#keywords"
+    },
+    {
+      "include": "#symbols"
+    },
+    {
+			"include": "#literals"
+		}
+  ],
+  "repository": {
+		"keywords": {
+      "patterns": [
+        {
+          "name": "keyword.other.lest",
+          "match": "\\b(derives|import|use|impossible)\\b"
+        },
+        {
+          "name": "keyword.control.lest",
+          "match": "\\b(in|where|of|let|with|as|case|from)\\b"
+        },
+        {
+          "name": "variable.language.type.lest",
+          "match": "\\b(Type)\\b"
+        },
+        {
+          "name": "storage.modifier.lest",
+          "match": "\\b(alias|public|open|mutual)\\b"
+        },
+        {
+          "name": "storage.type.lest",
+          "match": "\\b(spec|module|record|erase|once)\\b"
+        },
+        {
+          "name": "support.function.lest",
+          "match": "\\b(if|else|then|for|do|case|not|and|or)\\b"
+        },
+        {
+          "name": "support.type.lest",
+          "match": "\\b(Int|Uint|Char|Byte|Bool|String|Void|List)\\b"
+        }
+      ]
+    },
+    "literals": {
+      "patterns": [
+        {
+          "name": "string.quoted.double.lest",
+          "begin": "\"",
+          "end": "\"",
+          "patterns": [
+            {
+              "name": "constant.character.escape.lest",
+              "match": "\\\\(\\\\|a|b|f|n|r|t|v|\"|')"
+            }
+          ]
+        },
+        {
+          "name": "constant.character.lest",
+          "patterns": [
+            {
+              "name": "constant.character.escape.lest",
+              "match": "\\b'\\\\(\\\\|a|b|f|n|r|t|v|')'"
+            },
+            {
+              "name": "constant.character.lest",
+              "match": "\\b'[^'\\f\\n\\r\\t\\v\\u00a0\\u1680\\u2000-\\u200a\\u2028\\u2029\\u202f\\u205f\\u3000\\ufeff]'"
+            },
+            {
+              "name": "invalid.illegal.lest",
+              "match": "\\b'(\\\\[^\\\\abfnrtv'])'"
+            },
+            {
+              "name": "invalid.illegal.lest",
+              "match": "\\b''"
+            }
+          ]
+        },
+        {
+          "patterns": [
+            {
+              "name": "constant.numeric.lest",
+              "match": "([0-9](_*[0-9]+)*)|(0(x|X)[0-9a-fA-F](_*[0-9a-fA-F]+)*)|(0(o|O)[0-7](_*[0-7]+)*)|(0(b|B)[01](_*[01]+)*)"
+            }
+          ]
+        },
+        {
+          "patterns": [
+            {
+              "name": "constant.numeric.lest",
+              "match": "(([0-9](_*[0-9]+)*)(\\.([0-9](_*[0-9]+)*)))|(([0-9](_*[0-9]+)*)(\\.([0-9](_*[0-9]+)*))([eE][\\+\\-]?([0-9](_*[0-9]+)*)))"
+            }
+          ]
+        }
+      ]
+    },
+    "symbols": {
+      "patterns": [
+        {
+          "patterns": [
+            {
+              "name": "keyword.operator.lest",
+              "match": "(->|=>|=|,|;|:|\\||\\.\\.|\\.|\\\\)(?![!#\\$%\\^\\&\\*@~<>\\.\\?/:\\|\\-\\+=\\\\`])"
+            }
+          ]
+        },
+        {
+          "patterns": [
+            {
+              "name": "entity.name.type.lest",
+              "match": "\\b[A-Z][A-Za-z0-9']*\\b"
+            }
+          ]
+        },
+        {
+          "patterns": [
+            {
+              "name": "variable.other.lest",
+              "match": "\\b\\?[a-z][A-Za-z0-9']*\\b"
+            },
+            {
+              "name": "entity.name.lest",
+              "match": "\\b[a-z][A-Za-z0-9']*\\b"
+            }
+          ]
+        },
+        {
+          "patterns": [
+            {
+              "name": "entity.name.function.lest",
+              "match": "([!#\\$%\\^\\&\\*@~<>\\.\\?/:\\|\\-\\+=\\\\`]+)"
+            }
+          ]
+        }
+      ]
+    },
+    "indent": {
+      "patterns": [
+        {
+          "name": "meta.indent.lest",
+          "begin": "^(\\s)?",
+          "end": "(\\s)*"
+        }
+      ]
+    },
+    "function_body": {
+      "patterns": [
+        {
+          "name": "meta.function.body.lest",
+          "begin": "^(\\s*?)(\\s)?",
+          "end": "^\\1"
+        }
+      ]
+    },
+    "func_name": {
+      "patterns": [
+        {
+          "name": "entity.name.function.lest",
+          "match": "(?<=^|let[ \\t]|with[ \\t]|where[ \\t])[ \\t]*(?!erase|once|spec|record|mutual|module|alias|in|from|where|of|case|public|open|let|derives|import|use|with)([a-zA-Z][A-Za-z0-9']*|\\([a-zA-Z][A-Za-z0-9']*\\))\\b'*"
+        }
+      ]
+    },
+    "documentation-properties": {
+      "patterns": [
+        {
+          "name": "support.type.property-name.documentation.lest",
+          "match": "@\\h*(param|return|returns|author|since|version|see|deprecated|note|notes|todo|bug|fix|issue|link|example|code|post|invariant|require|ensure)\\h*([A-Za-z][0-9a-zA-Z']*)\\b"
+        }
+      ]
+    },
+    "comments": {
+      "patterns": [
+        {
+          "name": "comment.line.double-dash.lest",
+          "begin": "--",
+          "end": "$",
+          "patterns": []
+        },
+        {
+          "name": "comment.block.documentation.lest",
+          "begin": "-\\*\\h*@doc\\b\\h*",
+          "end": "\\*-",
+          "patterns": [{ "include": "#documentation-properties" }]
+        },
+        {
+          "name": "comment.block.dash-asterisk.lest",
+          "begin": "-\\*",
+          "end": "\\*-",
+          "patterns": [{}]
+        },
+				{
+					"patterns": [
+						{
+							"name": "source.lest.embedded",
+							"begin": "--\\h*@embed\\h*([a-zA-Z][A-Za-z0-9']*)\\h*language\\h*\"(.+)\"\\h*$",
+							"end": "\\h*--\\h*@embed\\h*end\\h*\"\\1\"\\h*$",
+							"patterns": [{}]
+						}
+					]
+				}
+      ]
+    }
+  },
+  "scopeName": "source.lest"
+}

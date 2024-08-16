@@ -1,0 +1,48 @@
+{
+  "name": "lest",
+  "author": {
+    "name": "Alex Peters",
+    "email": "aapeters27@gmail.com"
+  },
+  "license": "MIT",
+  "displayName": "Lest",
+  "description": "VS Code extension for Lest language",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.82.0"
+  },
+  "categories": [
+    "Programming Languages"
+  ],
+  "contributes": {
+    "languages": [{
+      "id": "lest",
+      "aliases": ["Lest", "lest"],
+      "extensions": [".lt"],
+      "configuration": "./language-configuration.json",
+      "icon": {
+        "light": "./icons/lest-icon.png",
+        "dark": "./icons/lest-icon.png"
+      }
+    }],
+    "grammars": [{
+      "language": "lest",
+      "scopeName": "source.lest",
+      "path": "./syntaxes/lest.tmLanguage.json"
+    }],
+    "": [{
+
+    }]
+  },
+  "configuration": {
+    "type": "object",
+    "properties": {
+      "languageServerExample.enable": {
+        "scope": "resource",
+        "type": "number",
+        "default": 100,
+        "description": "Controls the maximum number of problems produced by the server."
+      }
+    }
+  }
+}

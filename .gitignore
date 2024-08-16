@@ -1,0 +1,5 @@
+icons/*.svg
+tmp/*
+tmp
+copy.lua
+vsc-extension-quickstart.md
